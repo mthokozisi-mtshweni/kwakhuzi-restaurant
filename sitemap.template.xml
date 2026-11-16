@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Deployment template only. Replace PRODUCTION_ORIGIN; save as sitemap.xml. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>PRODUCTION_ORIGIN/</loc></url>
+  <url><loc>PRODUCTION_ORIGIN/menu</loc></url>
+  <url><loc>PRODUCTION_ORIGIN/about</loc></url>
+  <url><loc>PRODUCTION_ORIGIN/gallery</loc></url>
+  <url><loc>PRODUCTION_ORIGIN/reviews</loc></url>
+  <url><loc>PRODUCTION_ORIGIN/contact</loc></url>
+</urlset>
