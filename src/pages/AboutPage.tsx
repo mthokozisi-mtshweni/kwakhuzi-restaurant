@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Heart, Target, Users } from 'lucide-react';
 import { aboutSections, aboutValues } from '../data/about';
 import { photo } from '../data/site';
+import aboutHeroImage from "../assets/About/Golden-Hour Welcome at Kwa’Khuzi Restaurant-2.png";
 import './AboutPage.css';
 
 const valueIcons = [Target, Heart, Users];
@@ -21,7 +22,7 @@ export default function AboutPage() {
 
   return <div ref={page} className="about-page">
     <section className="about-cinematic-hero" aria-label="About Kwa’Khuzi">
-      <img className="about-hero-photo" src={photo('20.42.23 (1)')} alt="The actual Kwa’Khuzi restaurant building in afternoon sunlight" fetchPriority="high" width="1600" height="1200" />
+      <img className="about-hero-photo" src={aboutHeroImage} alt="The actual Kwa’Khuzi restaurant building in afternoon sunlight" fetchPriority="high" width="1600" height="1200" />
       <div className="container about-hero-copy"><span className="about-eyebrow">ABOUT KWA’KHUZI</span><h1>More Than<br />a Restaurant.<em>A Taste of Home.</em></h1><p>Discover the story, flavours and people behind the Kwa’Khuzi experience in KwaMhlanga.</p></div>
       <span className="about-hero-pattern" aria-hidden="true" />
     </section>

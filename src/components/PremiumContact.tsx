@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+﻿import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Clock3, List, Mail, MapPin, MessageCircle, MessageSquareText, Phone, Send, UserRound } from 'lucide-react';
 import type { FormEvent, ReactNode } from 'react';
-import { photo, site } from '../data/site';
+import { contactPageMap, site } from '../data/site';
+import contactPageImage from "../assets/images/Hero/Golden-Hour Welcome at Kwa’Khuzi-3.png";
 import './PremiumContact.css';
 
 const enquiryTypes = ['Table Booking', 'General Enquiry', 'Special Occasion', 'Group Booking', 'Other'];
@@ -74,6 +75,8 @@ function EnquiryForm() {
 
 export default function PremiumContact({ full = false }: { full?: boolean }) {
   const section = useRef<HTMLElement>(null);
+  const mapEmbedUrl = contactPageMap.embedUrl;
+  const mapLink = contactPageMap.directionsUrl;
   useEffect(() => {
     const element = section.current;
     if (!element) return;
@@ -84,12 +87,12 @@ export default function PremiumContact({ full = false }: { full?: boolean }) {
     return () => observer.disconnect();
   }, []);
 
-  return <section ref={section} className="premium-contact" aria-label="Contact and enquiries">
+  return <section ref={section} className={`premium-contact${full ? ' contact-page' : ''}`} aria-label="Contact and enquiries">
     <span className="contact-corner" aria-hidden="true" />
     <div className="container premium-contact-inner">
       <div className="premium-contact-heading"><span className="premium-contact-eyebrow">GET IN TOUCH</span>{full ? <h1>Contact <em>Kwa’Khuzi</em></h1> : <h2>Contact <em>Kwa’Khuzi</em></h2>}<p>We’re here to help with bookings, enquiries and more. Reach out to us using the details below.</p></div>
       <div className="premium-contact-grid">
-        <figure className="contact-venue-photo"><img src={photo('20.42.23 (1)')} alt="The actual Kwa’Khuzi two-storey building in the afternoon sun" loading="lazy" width="480" height="640" /><img className="contact-photo-logo" src={site.logo} alt="Kwa’Khuzi Traditional Restaurant" /></figure>
+        <figure className="contact-venue-photo"><img src={contactPageImage} alt="The actual Kwa’Khuzi two-storey building in the afternoon sun" loading="lazy" width="480" height="640" /><img className="contact-photo-logo" src={site.logo} alt="Kwa’Khuzi Traditional Restaurant" /></figure>
         <div className="contact-business-details">
           <ContactRow icon={<Phone size={22} />} title="Call Us"><a href={site.telephone}>{site.phone}</a></ContactRow>
           <ContactRow icon={<MessageCircle size={22} />} title="WhatsApp"><a href={site.whatsapp} target="_blank" rel="noreferrer">{site.phone}<ArrowRight size={13} /></a></ContactRow>
@@ -98,7 +101,7 @@ export default function PremiumContact({ full = false }: { full?: boolean }) {
           <ContactRow icon={<Clock3 size={23} />} title="Operating Hours">{site.openingHours ? <ul className="contact-hours">{site.openingHours.map(row => <li key={row.days}><span>{row.days}</span><span>{row.hours}</span></li>)}</ul> : <p>Hours to be confirmed.<br /><span>Please call before planning your visit.</span></p>}</ContactRow>
         </div>
         <div className="contact-map-column">
-          {site.googleMapsEmbedUrl ? <div className="contact-map-embed"><iframe src={site.googleMapsEmbedUrl} title="Kwa’Khuzi Traditional Restaurant location" loading="lazy" allowFullScreen referrerPolicy="no-referrer-when-downgrade" /><a href={site.maps} target="_blank" rel="noreferrer">View larger map<ArrowRight size={16} /></a></div> : <div className="contact-map-placeholder"><span className="contact-map-icon"><MapPin size={40} strokeWidth={1.2} /></span><span className="eyebrow">FIND US IN KWAMHLANGA</span><h3>A taste of home.<br />Just around the corner.</h3><p>Near Solomon Mahlangu Stadium,<br />Mpumalanga, South Africa.</p><a className="button" href={site.maps} target="_blank" rel="noreferrer"><MapPin size={17} />Search on Google Maps<ArrowRight size={17} /></a><small>Exact map location awaiting confirmation. Please check your destination with our team.</small></div>}
+          {mapEmbedUrl ? <div className="contact-map-embed"><iframe src={mapEmbedUrl} title="Kwa’Khuzi Traditional Restaurant location" loading="lazy" allowFullScreen referrerPolicy="no-referrer-when-downgrade" /><a href={mapLink} target="_blank" rel="noopener noreferrer">Get Directions<ArrowRight size={16} /></a></div> : <div className="contact-map-placeholder"><span className="contact-map-icon"><MapPin size={40} strokeWidth={1.2} /></span><span className="eyebrow">FIND US IN KWAMHLANGA</span><h3>A taste of home.<br />Just around the corner.</h3><p>Near Solomon Mahlangu Stadium,<br />Mpumalanga, South Africa.</p><a className="button" href={site.maps} target="_blank" rel="noreferrer"><MapPin size={17} />Search on Google Maps<ArrowRight size={17} /></a><small>Exact map location awaiting confirmation. Please check your destination with our team.</small></div>}
         </div>
       </div>
     </div>
@@ -108,3 +111,4 @@ export default function PremiumContact({ full = false }: { full?: boolean }) {
     </div>
   </section>;
 }
+

@@ -8,6 +8,7 @@ import PremiumReviews from './components/PremiumReviews';
 import PremiumContact from './components/PremiumContact';
 import AboutPage from './pages/AboutPage';
 import FloatingSocial from './components/FloatingSocial';
+import aboutImage from "./assets/About/Golden-Hour Welcome at Kwa’Khuzi Restaurant-2.png";
 import './App.css';
 
 function Button({to,children,outline=false}:{to:string;children:React.ReactNode;outline?:boolean}) {return <Link className={`button ${outline?'outline':''}`} to={to}>{children}<ArrowRight size={17}/></Link>}
@@ -173,7 +174,7 @@ function Hero() {
   </section>;
 }
 
-function Intro({full=false}:{full?:boolean}){return <section id="introduction" className="section cream patterned"><div className="container intro-grid"><div className="image-frame"><img src={photo('20.42.23 (2)')} alt="The actual Kwa’Khuzi restaurant entrance" loading="lazy"/><span className="image-note">KwaMhlanga, Mpumalanga</span></div><div><Heading label="OUR HOME. YOUR TABLE." title="Welcome to Kwa’Khuzi"/><p>A place for familiar flavours, generous meals and good company. At Kwa’Khuzi, traditional South African food brings us together around the table.</p><p>Join us in KwaMhlanga, near Solomon Mahlangu Stadium, for a meal that feels like coming home.</p><Button to={full?'/menu':'/about'} outline>{full?'Discover our menu':'A little more about us'}</Button></div><div className="values">{[[UtensilsCrossed,'Traditional flavours'],[Users,'Made for sharing'],[Heart,'A taste of home']].map(([Icon,label])=>{const I=Icon as typeof Heart;return <div key={String(label)}><I size={26}/><span>{String(label)}</span></div>})}</div></div></section>}
+function Intro({full=false}:{full?:boolean}){return <section id="introduction" className="section cream patterned"><div className="container intro-grid"><div className="image-frame"><img src={aboutImage} alt="The actual Kwa’Khuzi restaurant entrance" loading="lazy"/><span className="image-note">KwaMhlanga, Mpumalanga</span></div><div><Heading label="OUR HOME. YOUR TABLE." title="Welcome to Kwa’Khuzi"/><p>A place for familiar flavours, generous meals and good company. At Kwa’Khuzi, traditional South African food brings us together around the table.</p><p>Join us in KwaMhlanga, near Solomon Mahlangu Stadium, for a meal that feels like coming home.</p><Button to={full?'/menu':'/about'} outline>{full?'Discover our menu':'A little more about us'}</Button></div><div className="values">{[[UtensilsCrossed,'Traditional flavours'],[Users,'Made for sharing'],[Heart,'A taste of home']].map(([Icon,label])=>{const I=Icon as typeof Heart;return <div key={String(label)}><I size={26}/><span>{String(label)}</span></div>})}</div></div></section>}
 
 
 function Footer() {
@@ -189,7 +190,7 @@ function Footer() {
         <Link to="/" aria-label="Kwa’Khuzi home"><img className="footer-brand-logo" src={site.logo} alt="Kwa’Khuzi Traditional Restaurant" loading="lazy" /></Link>
         <p>A place where great food, African heritage and warm hospitality come together.</p>
         <div className="restaurant-footer-socials" aria-label="Social media">{socialLinks.map(social => social.url
-          ? <a key={social.label} href={social.url} target="_blank" rel="noreferrer noopener" aria-label={`Kwa’Khuzi on ${social.label}`}>{social.icon}</a>
+          ? <a key={social.label} href={social.url} target="_blank" rel="noopener noreferrer" aria-label={`Kwa’Khuzi on ${social.label}`}>{social.icon}</a>
           : <span key={social.label} className="footer-social-pending" role="img" aria-label={`${social.label} link awaiting confirmation`} title={`${social.label} link awaiting confirmation`}>{social.icon}</span>)}</div>
         {socialLinks.some(social => !social.url) && <small className="footer-social-note">More social links coming soon.</small>}
       </div>
