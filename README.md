@@ -134,12 +134,12 @@ The bottom bar contains one developer credit with the complete gold company name
 The hero now uses the nine currently supplied PNG images in `src/assets/images/Hero/`, via full-resolution lossless WebP copies named `public/images/hero/updated-*.webp`. Originals and older assets are preserved. The existing hero layout, header, text, buttons, gradients, image grading, zoom and responsive rules remain unchanged.
 
 Background rotation is now every five seconds with a one-second crossfade. Only the initial scene and decoded upcoming scenes are mounted, deferring later image downloads; the next image is preloaded and decoded before activation. Reduced-motion, hidden-page and open-video pause behaviour remain. A failed next image retains the current background rather than exposing a blank frame.
-## Reversible Earthy theme preview
+## Reversible Earthy theme
 
-Local development now defaults to the Earthy palette. Run `npm run dev` (`npm.cmd run dev` in PowerShell if needed) without setting an environment variable. Production builds and `npm run preview` remain Original pending approval; the production-preview command serves the built output rather than the development theme.
+Earthy is now the shared default for development **and production builds**. The previous `import.meta.env.DEV` guard forced every deployed build to Original even when the Earthy CSS was present. That guard has been removed locally; the hosted site cannot change until the fix is approved, committed, pushed and deployed.
 
-To select a theme explicitly, copy `.env.development.example` to `.env.development.local` (already ignored), set `VITE_COLOR_THEME=earthy` or `VITE_COLOR_THEME=original`, and restart the dev server. Removing that local file returns development to Earthy. Original remains fully recoverable: its existing component stylesheets are unmodified and the theme attribute is removed in Original mode.
+Run `npm run dev` or build/serve with `npm run build` and `npm run preview` to see Earthy. To restore Original, set `VITE_COLOR_THEME=original` before starting Vite or building. For development, use `.env.development.local`; for Vercel, set the build-time environment variable and rebuild. Setting `VITE_COLOR_THEME=earthy` explicitly is also supported. No customer-facing switch or stored browser preference is added.
 
-There is no customer-facing switch or stored browser preference. `src/styles/theme.ts` centralizes selection; `src/styles/themes.css` contains attribute-scoped color overrides. The main page canvas is Warm Cream, light sections use Soft Ivory, alternate About rows use Sand Beige, dark branding surfaces use Deep Brown, supporting text uses Earthy Brown, and accents use Muted Gold. Hero imagery/overlays, image placement, layout, typography, animations, Elfsight internals and the floating social component are unchanged.
+The original component stylesheets remain unchanged. `src/styles/theme.ts` centralizes selection; `src/styles/themes.css` applies component-scoped color rules only when `data-color-theme="earthy"` is present. Hero photographs/overlays, layout, typography, images, animation, map, Elfsight integration and floating socials are preserved.
 
 Palette: Warm Cream `#F5EBDD`, Soft Ivory `#FFFCF5`, Sand Beige `#DCC7A8`, Earthy Brown `#795548`, Deep Brown `#38291F`, Muted Gold `#B89556`.
